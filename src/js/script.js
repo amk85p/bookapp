@@ -28,7 +28,7 @@
       thisBooksList.getElements();
       thisBooksList.renderBooks();
       thisBooksList.initActions();
-      thisBooksList.determineRatingBgc()
+      thisBooksList.determineRatingBgc();
     }
 
     initActions() {
@@ -178,4 +178,5 @@
 
 
   const app = new BooksList();
+  console.log(app);
 }
