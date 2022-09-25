@@ -10,7 +10,6 @@
       book: '.book',
       bookImage: 'book__image',
       bookFilters: '.filters',
-      
     },
     classNames: {
       favoriteBook: 'favorite',
@@ -102,7 +101,7 @@
 
         for (let filter of thisBooksList.filters) {
           // details.adults = true;
-          if (element.details[filter]) {
+          if (!element.details[filter]) {
             shouldBeHidden = true;
             console.log(element.id);
 
@@ -134,48 +133,44 @@
         select.containerOf.bookFilters
       );
       console.log('thisBooksList.booksFilters:', thisBooksList.booksFilters);
-
-    
     }
 
     renderBooks() {
       const thisBooksList = this;
- 
-    
+
       for (let bookId of dataSource.books) {
-     
         const ratingBgc = thisBooksList.determineRatingBgc(bookId.rating);
         bookId.ratingBgc = ratingBgc;
-        const ratingWidth = (bookId.rating) * 10;
+        const ratingWidth = bookId.rating * 10;
         bookId.ratingWidth = ratingWidth;
-        console.log(ratingBgc, ratingWidth, bookId );
-        
+        console.log(ratingBgc, ratingWidth, bookId);
+
         const generatedHTML = templates.booksList(bookId);
         // console.log(generatedHTML, dataSource.books, bookId);
-      
+
         const generatedDOM = utils.createDOMFromHTML(generatedHTML);
         // console.log(generatedDOM);
-      
+
         thisBooksList.booksContainer.appendChild(generatedDOM);
         // console.log('init render');
       }
     }
     determineRatingBgc(rating) {
       const thisBooksList = this;
-     
-      if (rating <7){
-        return   '#f1da36';
-      } if (rating <= 9){
-        return   '#f222';
-      } if (rating <= 10){
-        return   '#e999 ;';
+
+      if (rating < 7) {
+        return '#f1da36';
+      }
+      if (rating <= 9) {
+        return '#f222';
+      }
+      if (rating <= 10) {
+        return '#e999 ;';
       }
       console.log(thisBooksList);
       // console.log(determineRatingBgc());
-   
     }
   }
-
 
   const app = new BooksList();
   console.log(app);
